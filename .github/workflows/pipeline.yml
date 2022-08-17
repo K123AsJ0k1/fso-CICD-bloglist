@@ -59,9 +59,8 @@ jobs:
         with:
           start: |
             npm run start:test
-            cd frontend
-            npm run start
-          command: npm run test:e2e  
+            cd frontend && npm run start
+          command: cd frontend && npm run test:e2e  
 
           
 
