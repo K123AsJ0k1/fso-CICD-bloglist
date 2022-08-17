@@ -4,3 +4,5 @@ build
 .eslintignore
 package-lock-json
 package.json
+cypress
+cypress.config.js
