@@ -55,7 +55,7 @@ jobs:
         with:
           node-version: "16"
       - name: e2e
-        - uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v2
         with:
           start: |
             npm run start:test
