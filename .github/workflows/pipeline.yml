@@ -54,8 +54,13 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "16"
+      - name: Backend install
+        run: npm install
       - name: Start backend
         run: npm run start:test
+      - name: Frontend install
+        working-directory: ./frontend
+        run: npm install
       - name: Start frontend
         working-directory: ./frontend
         run: npm run start
