@@ -61,11 +61,13 @@ jobs:
         run: npm install
       - name: Backend start
         run: npm run start:test & 
+      - name: Frontend start
+        working-directory: ./frontend
+        run: npm run start &
       - name: e2e
         uses: cypress-io/github-action@v2
         with:
           command: npm run test:e2e
-          start: npm run start
           working-directory: ./frontend
           wait-on: 'http://localhost:3003/api/blogs'
 
