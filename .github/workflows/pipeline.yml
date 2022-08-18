@@ -56,19 +56,9 @@ jobs:
           node-version: "16"
       - name: Backend install
         run: npm install
-      - name: Start backend
-        run: npm run start:test
       - name: Frontend install
         working-directory: ./frontend
         run: npm install
-      - name: Start frontend
-        working-directory: ./frontend
-        run: npm run start
-      - name: e2e
-        uses: cypress-io/github-action@v2
-        with:
-          start: npm run test:e2e
-          working-directory: ./frontend
 
           
 
