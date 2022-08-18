@@ -81,19 +81,19 @@ describe('Blog app', function() {
           cy.get('#title').type('title1')
           cy.get('#author').type('author1')
           cy.get('#url').type('url1')
-          cy.get('#create-button').click().wait(1000)
+          cy.get('#create-button').click().wait(2000)
 
           cy.contains('create new blog').click()
           cy.get('#title').type('title2')
           cy.get('#author').type('author2')
           cy.get('#url').type('url2')
-          cy.get('#create-button').click().wait(1000)
+          cy.get('#create-button').click().wait(2000)
 
           cy.contains('create new blog').click()
           cy.get('#title').type('title3')
           cy.get('#author').type('author3')
           cy.get('#url').type('url3')
-          cy.get('#create-button').click().wait(1000)
+          cy.get('#create-button').click().wait(2000)
         })
 
         it('Blogs are ordered in creation order', function() {
@@ -105,16 +105,16 @@ describe('Blog app', function() {
 
         it('Blogs are in most liked order', function() {
           cy.get('.blog').eq(3).contains('view').click()
-          cy.get('.blog').eq(3).contains('like').click().wait(1000)
-          cy.get('.blog').eq(0).contains('like').click().wait(1000)
-          cy.get('.blog').eq(0).contains('like').click().wait(1000)
+          cy.get('.blog').eq(3).contains('like').click().wait(2000)
+          cy.get('.blog').eq(0).contains('like').click().wait(2000)
+          cy.get('.blog').eq(0).contains('like').click().wait(2000)
 
           cy.get('.blog').eq(3).contains('view').click()
-          cy.get('.blog').eq(3).contains('like').click().wait(1000)
-          cy.get('.blog').eq(1).contains('like').click().wait(1000)
+          cy.get('.blog').eq(3).contains('like').click().wait(2000)
+          cy.get('.blog').eq(1).contains('like').click().wait(2000)
 
           cy.get('.blog').eq(3).contains('view').click()
-          cy.get('.blog').eq(3).contains('like').click().wait(1000)
+          cy.get('.blog').eq(3).contains('like').click().wait(2000)
 
           cy.get('.blog').eq(0).should('contain', 'title3 author3')
           cy.get('.blog').eq(1).should('contain', 'title2 author2')
