@@ -1,5 +1,4 @@
 describe('Blog app', function() {
-  /*
   beforeEach(function() {
     cy.request('POST', 'http://localhost:3003/api/testing/reset')
     const user = {
@@ -10,15 +9,14 @@ describe('Blog app', function() {
     cy.request('POST', 'http://localhost:3003/api/users/', user)
     cy.visit('http://localhost:3000/')
   })
-  */
-
+  
   it('Login form is shown', function() {
-    cy.visit('http://localhost:3000/')
+    //cy.visit('http://localhost:3000/')
     cy.contains('log in to application')
     cy.contains('username')
     cy.contains('password')
   })
-  /*
+  
   describe('Login', function () {
     it('succeeds with correct credentials', function() {
       cy.get('#username').type('testUser')
@@ -125,6 +123,4 @@ describe('Blog app', function() {
       })
     })
   })
-  */
-
 })
