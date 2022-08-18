@@ -59,6 +59,14 @@ jobs:
       - name: Frontend install
         working-directory: ./frontend
         run: npm install
+      - name: Backend start
+        run: npm run start:test & 
+      - name: e2e
+        uses: cypress-io/github-action@v2
+        with:
+          command: npm run test:e2e
+          start: npm run start
+          working-directory: ./frontend
 
           
 
