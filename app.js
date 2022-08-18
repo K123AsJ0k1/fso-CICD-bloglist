@@ -33,9 +33,6 @@ app.use('/api/login', loginRouter)
 // eslint-disable-next-line no-undef
 if (process.env.NODE_ENV === 'test') {
   console.log('test')
-  // eslint-disable-next-line no-undef 
-  //asda
-  console.log(`Used port:${process.env.PORT}`)
   const testingRouter = require('./controllers/testing')
   app.use('/api/testing', testingRouter)
 }

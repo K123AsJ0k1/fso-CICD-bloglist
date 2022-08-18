@@ -10,7 +10,8 @@ on:
 
 env:
   MONGODB_URI: ${{ secrets.MONGODB_URI }}
-  PORT: 3003
+  PORT: 3000
+  BACK_PORT: 3003
   TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }} 
   SECRET: ${{ secrets.SECRET }}
 
