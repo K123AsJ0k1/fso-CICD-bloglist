@@ -104,16 +104,16 @@ describe('Blog app', function() {
 
         it('Blogs are in most liked order', function() {
           cy.get('.blog').eq(3).contains('view').click()
-          cy.get('.blog').eq(3).contains('like').click().wait(2000)
-          cy.get('.blog').eq(0).contains('like').click().wait(2000)
-          cy.get('.blog').eq(0).contains('like').click().wait(2000)
+          cy.get('.blog').eq(3).contains('like').click().wait(2500)
+          cy.get('.blog').eq(0).contains('like').click().wait(2500)
+          cy.get('.blog').eq(0).contains('like').click().wait(2500)
 
           cy.get('.blog').eq(3).contains('view').click()
-          cy.get('.blog').eq(3).contains('like').click().wait(2000)
-          cy.get('.blog').eq(1).contains('like').click().wait(2000)
+          cy.get('.blog').eq(3).contains('like').click().wait(2500)
+          cy.get('.blog').eq(1).contains('like').click().wait(2500)
 
           cy.get('.blog').eq(3).contains('view').click()
-          cy.get('.blog').eq(3).contains('like').click().wait(2000)
+          cy.get('.blog').eq(3).contains('like').click().wait(2500)
 
           cy.get('.blog').eq(0).should('contain', 'title3 author3')
           cy.get('.blog').eq(1).should('contain', 'title2 author2')
