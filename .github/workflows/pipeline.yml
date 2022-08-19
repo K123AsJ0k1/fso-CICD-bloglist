@@ -11,7 +11,7 @@ on:
 env:
   MONGODB_URI: ${{ secrets.MONGODB_URI }}
   PORT: 3000
-  BACK_PORT: 3003
+  BACK_PORT: 3000
   TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }} 
   SECRET: ${{ secrets.SECRET }}
 
@@ -69,7 +69,6 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           command: npm run test:e2e
-          start: npm run start
           working-directory: ./frontend
           wait-on: 'http://localhost:3003/api/blogs/, http://localhost:3000/'
       - name: Heroku deployment

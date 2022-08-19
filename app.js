@@ -54,11 +54,8 @@ app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
 
 // eslint-disable-next-line no-undef
-if (process.env.NODE_ENV !== 'test') {
-  // eslint-disable-next-line no-undef
-  app.listen(process.env.PORT || 3000, () => {
-    console.log('server started on port 3000')
-  })
-}
+app.listen(process.env.PORT || 3000, () => {
+  console.log('server started on port 3000')
+})
 
 module.exports = app
