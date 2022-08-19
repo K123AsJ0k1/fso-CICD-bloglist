@@ -64,7 +64,7 @@ jobs:
         working-directory: ./frontend
         run: npm run build
       - name: Running
-        run: npm run start
+        run: npm run start:test &
       - name: E2E
         uses: cypress-io/github-action@v2
         with:
