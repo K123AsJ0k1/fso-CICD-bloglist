@@ -23,6 +23,7 @@ mongoose.connect(config.MONGODB_URI)
 
 app.use(cors())
 app.use(express.json())
+// eslint-disable-next-line no-undef
 app.use(express.static(path.resolve(__dirname,'./frontend/build')))
 app.use(middleware.requestLogger)
 app.use(middleware.tokenExtractor)
