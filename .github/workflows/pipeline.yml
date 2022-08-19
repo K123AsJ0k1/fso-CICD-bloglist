@@ -55,13 +55,20 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: "16"
-      - name: Install
+      - name: Backend install
         run: npm install
+      - name: Frontend install
+        working-directory: ./frontend
+        run: npm install
+      - name: Build
+        working-directory: ./frontend
+        run: npm run build
       - name: E2E
         uses: cypress-io/github-action@v2
         with:
-          command: | 
-            cd frontend
-            npm run test:e2e
-          start: npm run start &
+          command: npm run test:e2e
+          start: |
+            cd..
+            npm run start
+          working-directory: ./frontend
           wait-on: 'http://localhost:3003/api/blogs/, http://localhost:3000/'

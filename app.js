@@ -25,6 +25,7 @@ app.use(cors())
 app.use(express.json())
 // eslint-disable-next-line no-undef
 //app.use(express.static('build'))
+// eslint-disable-next-line no-undef
 app.use(express.static(path.resolve(__dirname,'./frontend/build')))
 app.use(middleware.requestLogger)
 app.use(middleware.tokenExtractor)
@@ -52,6 +53,7 @@ if (process.env.NODE_ENV === 'test') {
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
 
+// eslint-disable-next-line no-undef
 if (process.env.NODE_ENV !== 'test') {
   app.listen(3000, () => {
     console.log('server started on port 3000')
