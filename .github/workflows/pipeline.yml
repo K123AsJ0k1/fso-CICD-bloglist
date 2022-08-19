@@ -63,5 +63,5 @@ jobs:
           command: | 
             cd frontend
             npm run test:e2e
-          start: npm run start
+          start: npm run start &
           wait-on: 'http://localhost:3003/api/blogs/, http://localhost:3000/'

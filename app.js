@@ -24,6 +24,7 @@ mongoose.connect(config.MONGODB_URI)
 app.use(cors())
 app.use(express.json())
 // eslint-disable-next-line no-undef
+//app.use(express.static('build'))
 app.use(express.static(path.resolve(__dirname,'./frontend/build')))
 app.use(middleware.requestLogger)
 app.use(middleware.tokenExtractor)
@@ -43,6 +44,7 @@ app.get('/api/version', (req, res) => {
 // eslint-disable-next-line no-undef
 if (process.env.NODE_ENV === 'test') {
   console.log('test')
+  app.use(express.static('build'))
   const testingRouter = require('./controllers/testing')
   app.use('/api/testing', testingRouter)
 }
@@ -50,8 +52,10 @@ if (process.env.NODE_ENV === 'test') {
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
 
-app.listen(3000, () => {
-  console.log('server started on port 3000')
-})
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(3000, () => {
+    console.log('server started on port 3000')
+  })
+}
 
 module.exports = app
