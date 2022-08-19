@@ -68,8 +68,4 @@ jobs:
           command: npm run test:e2e
           start: npm run start
           working-directory: ./frontend
-          wait-on: 'http://localhost:3003/api/blogs/'
-
-          
-
-          
+          wait-on: 'http://localhost:3003/api/blogs/, http://localhost:3000/'

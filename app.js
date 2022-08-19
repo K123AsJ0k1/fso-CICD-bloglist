@@ -3,6 +3,7 @@ const express = require('express')
 require('express-async-errors')
 const app = express()
 const cors = require('cors')
+const path = require('path')
 const blogsRouter = require('./controllers/blogs')
 const usersRouters = require('./controllers/users')
 const loginRouter = require('./controllers/login')
@@ -21,14 +22,22 @@ mongoose.connect(config.MONGODB_URI)
   })
 
 app.use(cors())
-app.use(express.static('build'))
 app.use(express.json())
+app.use(express.static(path.resolve(__dirname,'./frontend/build')))
 app.use(middleware.requestLogger)
 app.use(middleware.tokenExtractor)
 
 app.use('/api/blogs', blogsRouter)
 app.use('/api/users', usersRouters)
 app.use('/api/login', loginRouter)
+
+app.get('/api/health', (req, res) => {
+  res.send('ok')
+})
+
+app.get('/api/version', (req, res) => {
+  res.send('1') // change this string to ensure a new version deployed
+})
 
 // eslint-disable-next-line no-undef
 if (process.env.NODE_ENV === 'test') {
@@ -37,8 +46,11 @@ if (process.env.NODE_ENV === 'test') {
   app.use('/api/testing', testingRouter)
 }
 
-
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
+
+app.listen(3000, () => {
+  console.log('server started on port 3000')
+})
 
 module.exports = app
