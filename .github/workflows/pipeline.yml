@@ -72,3 +72,10 @@ jobs:
           start: npm run start
           working-directory: ./frontend
           wait-on: 'http://localhost:3003/api/blogs/, http://localhost:3000/'
+      - name: Heroku deployment
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "intense-beyond-35523"
+          heroku_email: "niila.siilasjoki@gmail.com"
+          
