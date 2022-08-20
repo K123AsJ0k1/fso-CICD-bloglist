@@ -4,7 +4,9 @@
   "description": "Osa 0",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node app.js",
+    "start": "NODE_ENV=production node app.js",
+    "heroku-postbuild": "cd ./frontend && npm install && npm run build",
+    "normal": "cross-env NODE_ENV=production node app.js",
     "dev": "cross-env NODE_ENV=development nodemon app.js",
     "lint": "eslint .",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand --forceExit ./tests",
