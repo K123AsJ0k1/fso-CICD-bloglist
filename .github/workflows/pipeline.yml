@@ -97,7 +97,7 @@ jobs:
           text: Build failed
           webhookurl: ${{ secrets.DISCORD_WEBHOOK }}
   tag_release:
-    needs: [simple_deployment_pipeline]
+    needs: [application]
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
