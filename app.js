@@ -2,6 +2,8 @@ const config = require('./utils/config')
 const express = require('express')
 require('express-async-errors')
 const app = express()
+// eslint-disable-next-line no-undef
+const port = process.env.PORT || 3000
 const cors = require('cors')
 const path = require('path')
 const blogsRouter = require('./controllers/blogs')
@@ -26,7 +28,7 @@ app.use(express.json())
 // eslint-disable-next-line no-undef
 //app.use(express.static('build'))
 // eslint-disable-next-line no-undef
-app.use(express.static(path.resolve(__dirname,'./frontend/build')))
+app.use(express.static(path.join(__dirname,'./frontend/build')))
 app.use(middleware.requestLogger)
 app.use(middleware.tokenExtractor)
 
@@ -56,7 +58,7 @@ app.use(middleware.errorHandler)
 // eslint-disable-next-line no-undef
 if (process.env.NODE_ENV !== 'test') {
   // eslint-disable-next-line no-undef
-  app.listen(process.env.PORT || 3000, () => {
+  app.listen(port, () => {
     console.log('server started on application port 3000')
   })
 }
