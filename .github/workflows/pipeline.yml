@@ -17,6 +17,7 @@ env:
 
 jobs:
   backend:
+    if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -30,6 +31,8 @@ jobs:
       - name: test 
         run: npm run test 
   frontend:
+    if: ${{ github.event_name == 'push' }}
+    needs: [backend]
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -49,6 +52,8 @@ jobs:
         working-directory: ./frontend
         run: npm run test
   application:
+    if: ${{ github.event_name == 'push' }}
+    needs: [frontend]
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -71,6 +76,7 @@ jobs:
           wait-on: 'http://localhost:3000/'
       - name: Heroku deployment
         uses: akhileshns/heroku-deploy@v3.12.12
+        if: ${{ !contains(join(github.event.commits.*.message), '#skip') }}
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "intense-beyond-35523"
@@ -97,6 +103,7 @@ jobs:
           text: Build failed
           webhookurl: ${{ secrets.DISCORD_WEBHOOK }}
   tag_release:
+    if: ${{ (github.event_name == 'push') && !contains(join(github.event.commits.*.message), '#skip') }}
     needs: [application]
     runs-on: ubuntu-20.04
     steps:
