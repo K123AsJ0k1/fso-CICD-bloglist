@@ -17,7 +17,7 @@ env:
 
 jobs:
   backend:
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ (github.event_name == 'push') || (github.event_name == 'pull_request') }}
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -31,7 +31,7 @@ jobs:
       - name: test 
         run: npm run test 
   frontend:
-    if: ${{ github.event_name == 'push' }}
+    if: ${{ (github.event_name == 'push') || (github.event_name == 'pull_request') }}
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
