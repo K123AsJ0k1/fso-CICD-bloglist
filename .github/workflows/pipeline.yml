@@ -75,4 +75,38 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "intense-beyond-35523"
           heroku_email: "niila.siilasjoki@gmail.com"
+          healthcheck: "https://intense-beyond-35523.herokuapp.com/api/health"
+          checkstring: "ok"
+          rollbackonhealthcheckfailed: true
+      - name: success notification
+        uses: rjstone/discord-webhook-notify@v1
+        if: success()
+        with:
+          severity: info
+          color: '#7CFC00'
+          description: 'to ${{ secrets.HEROKU_URL }} by K123AsJ0k1'
+          text: A new version of bloglist deployed
+          webhookurl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: failure notification
+        uses: rjstone/discord-webhook-notify@v1
+        if: failure()
+        with:
+          severity: error
+          color: '#FF0000'
+          description: 'commit ${{ github.event.head_commit.url }} by ${{ github.event.head_commit.author.username }} broke the build'
+          text: Build failed
+          webhookurl: ${{ secrets.DISCORD_WEBHOOK }}
+  tag_release:
+    needs: [simple_deployment_pipeline]
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.36.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
+
           
