@@ -32,7 +32,6 @@ jobs:
         run: npm run test 
   frontend:
     if: ${{ github.event_name == 'push' }}
-    needs: [backend]
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -53,7 +52,7 @@ jobs:
         run: npm run test
   application:
     if: ${{ github.event_name == 'push' }}
-    needs: [frontend]
+    needs: [backend,frontend]
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
