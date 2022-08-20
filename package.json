@@ -8,8 +8,7 @@
     "dev": "cross-env NODE_ENV=development nodemon app.js",
     "lint": "eslint .",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand --forceExit ./tests",
-    "start:test": "cross-env NODE_ENV=test node app.js",
-    "start:CI":"npm run start:test & cd frontend & npm run start & npm run exit"
+    "start:e2e": "cross-env NODE_ENV=e2e node app.js"
   },
   "repository": {
     "type": "git",

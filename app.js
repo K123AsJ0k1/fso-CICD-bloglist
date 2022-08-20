@@ -43,9 +43,9 @@ app.get('/api/version', (req, res) => {
 })
 
 // eslint-disable-next-line no-undef
-if (process.env.NODE_ENV === 'test') {
-  console.log('test')
-  app.use(express.static('build'))
+if (process.env.NODE_ENV === 'e2e') {
+  console.log('e2e')
+  //app.use(express.static('build'))
   const testingRouter = require('./controllers/testing')
   app.use('/api/testing', testingRouter)
 }
@@ -54,8 +54,10 @@ app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
 
 // eslint-disable-next-line no-undef
-app.listen(process.env.PORT || 3000, () => {
-  console.log('server started on port 3000')
-})
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(process.env.PORT || 3000, () => {
+    console.log('server started on application port 3000')
+  })
+}
 
 module.exports = app
